@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Liczby po Polsku | Polish Number Listening Practice</title>
+  <meta name="description" content="Improve your Polish listening skills by practicing spelling and pronunciation of numbers from 0 up to 10,000.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo-wrapper">
+        <div class="polish-flag-badge">
+          <div class="flag-white"></div>
+          <div class="flag-red"></div>
+        </div>
+        <h1>Liczby po Polsku</h1>
+      </div>
+      <p>Polish Number Listening Practice & Translating Trainer</p>
+    </header>
+
+    <main class="app-grid">
+      <!-- Left Column: Interactive Practice -->
+      <section class="glass-panel practice-card" id="practice-card-section">
+        <h2 class="panel-title">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+          </svg>
+          Słuchaj (Listen)
+        </h2>
+
+        <div class="audio-section">
+          <div class="audio-controls">
+            <!-- Slow Speech Button -->
+            <button class="play-slow-btn" id="play-slow-btn" title="Graj powoli (Play slow speed - 0.55x)">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+            </button>
+
+            <!-- Main Play Button -->
+            <button class="play-main-btn" id="play-btn" title="Graj (Play normal speed - 1.0x)">
+              <svg viewBox="0 0 24 24">
+                <polygon points="5,3 19,12 5,21"></polygon>
+              </svg>
+            </button>
+          </div>
+          <div class="audio-hint">Naciśnij przycisk, aby usłyszeć liczbę (Press button to hear number)</div>
+        </div>
+
+        <div class="input-form">
+          <div class="input-group">
+            <input type="number" id="user-input" class="input-field" placeholder="Wpisz cyfry... (Type the digits...)" min="0" max="10000" autocomplete="off" required>
+          </div>
+          
+          <div class="form-buttons">
+            <button class="btn btn-primary" id="check-btn">Sprawdź (Check)</button>
+            <button class="btn btn-secondary" id="reveal-btn" title="Odkryj odpowiedź (Reveal spelling and answer)">Odkryj (Reveal)</button>
+            <button class="btn btn-secondary" id="skip-btn" title="Pomiń tę liczbę (Skip to next number)">Pomiń (Skip)</button>
+          </div>
+        </div>
+
+        <!-- Feedback UI -->
+        <div class="feedback hidden" id="feedback">
+          <div class="feedback-header">
+            <h3 id="feedback-title">Dobrze! (Correct!)</h3>
+          </div>
+          <div class="feedback-details" id="feedback-message">
+            Liczba (Number): <strong>0</strong>
+          </div>
+          <div class="feedback-spelling" id="feedback-spelling">
+            Słownie (In words): <span class="polish-spelling-highlight">zero</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Right Column: Settings & History -->
+      <div class="config-card">
+        <!-- Settings Panel -->
+        <section class="glass-panel">
+          <h2 class="panel-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3"></circle>
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+            </svg>
+            Ustawienia (Settings)
+          </h2>
+
+          <div class="section-group" style="margin-bottom: 1.5rem;">
+            <label>Zakres Liczb (Number Range)</label>
+            <div class="range-presets">
+              <button class="range-preset-btn" data-min="0" data-max="10">0 - 10</button>
+              <button class="range-preset-btn" data-min="0" data-max="100">0 - 100</button>
+              <button class="range-preset-btn active" data-min="0" data-max="1000">0 - 1 000</button>
+              <button class="range-preset-btn" data-min="0" data-max="10000">0 - 10 000</button>
+            </div>
+            <div class="custom-range-inputs">
+              <div class="range-input-wrapper">
+                <span>Min (Min)</span>
+                <input type="number" id="min-range" class="sub-input" value="0" min="0" max="10000">
+              </div>
+              <div class="range-input-wrapper">
+                <span>Max (Max)</span>
+                <input type="number" id="max-range" class="sub-input" value="1000" min="0" max="10000">
+              </div>
+            </div>
+          </div>
+
+          <div class="section-group">
+            <label for="voice-select">Głos (Voice Engine)</label>
+            <div class="select-wrapper">
+              <select id="voice-select" class="custom-select">
+                <option value="">Wyszukiwanie głosów... (Loading voices...)</option>
+              </select>
+            </div>
+            <div class="voice-warning" id="voice-warning">
+              💡 Aby uzyskać najlepszą jakość, upewnij się, że w ustawieniach systemu operacyjnego zainstalowano polski pakiet językowy syntezatora mowy (TTS).
+            </div>
+          </div>
+        </section>
+
+        <!-- History Panel -->
+        <section class="glass-panel history-card">
+          <h2 class="panel-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            Historia (History)
+          </h2>
+          <ul class="history-list" id="history-list">
+            <!-- Populated via Javascript -->
+            <li class="history-empty">Brak historii sesji (No session history yet)</li>
+          </ul>
+        </section>
+      </div>
+
+      <!-- Statistics Panel (Full Width Bottom) -->
+      <section class="glass-panel stats-container">
+        <h2 class="panel-title" style="margin-bottom: 1.5rem;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="20" x2="18" y2="10"></line>
+            <line x1="12" y1="20" x2="12" y2="4"></line>
+            <line x1="6" y1="20" x2="6" y2="14"></line>
+          </svg>
+          Statystyki (Statistics)
+        </h2>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-val" id="stats-correct">0</div>
+            <div class="stat-label">Poprawne (Correct)</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-val" id="stats-total">0</div>
+            <div class="stat-label">Łącznie (Total Rounds)</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-val" id="stats-accuracy">0%</div>
+            <div class="stat-label">Dokładność (Accuracy)</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-val" id="stats-streak">0</div>
+            <div class="stat-label">Seria (Current Streak)</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-val" id="stats-max-streak">0</div>
+            <div class="stat-label">Najlepsza seria (Best Streak)</div>
+          </div>
+        </div>
+        <div style="display: flex; justify-content: center;">
+          <button class="btn btn-secondary reset-stats-btn" id="reset-stats-btn">Resetuj statystyki (Reset Session)</button>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>Liczby po Polsku. Stworzone przez <a href="#">Antigravity AI</a>. Znakomity trening mowy w języku polskim.</p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
