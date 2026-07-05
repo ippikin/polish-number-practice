@@ -28,7 +28,7 @@ class PolishNumberPractice {
     // UI Selectors
     this.selectors = {
       playBtn: document.getElementById('play-btn'),
-      playSlowBtn: document.getElementById('play-slow-btn'),
+      speedBtns: document.querySelectorAll('.speed-btn'),
       userInput: document.getElementById('user-input'),
       checkBtn: document.getElementById('check-btn'),
       revealBtn: document.getElementById('reveal-btn'),
@@ -111,8 +111,22 @@ class PolishNumberPractice {
 
   setupEventListeners() {
     // Play button
-    this.selectors.playBtn.addEventListener('click', () => this.speakCurrentNumber(1.0));
-    this.selectors.playSlowBtn.addEventListener('click', () => this.speakCurrentNumber(0.55));
+    this.selectors.playBtn.addEventListener('click', () => this.speakCurrentNumber(this.speechRate));
+    
+    // Speed buttons
+    this.selectors.speedBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const rate = parseFloat(e.target.dataset.rate);
+        this.speechRate = rate;
+        
+        // Update active class
+        this.selectors.speedBtns.forEach(b => b.classList.remove('active'));
+        e.target.classList.add('active');
+        
+        // Speak using new speed to give immediate feedback
+        this.speakCurrentNumber(rate);
+      });
+    });
     
     // Input action
     this.selectors.checkBtn.addEventListener('click', () => this.checkAnswer());
@@ -341,7 +355,7 @@ class PolishNumberPractice {
     utterance.pitch = 1.0;
     
     // Add visual playing indicators on the button
-    const activeBtn = speed < 0.8 ? this.selectors.playSlowBtn : this.selectors.playBtn;
+    const activeBtn = this.selectors.playBtn;
     activeBtn.classList.add('playing');
     
     utterance.onend = () => {

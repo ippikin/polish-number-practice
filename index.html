@@ -33,21 +33,23 @@
 
         <div class="audio-section">
           <div class="audio-controls">
-            <!-- Slow Speech Button -->
-            <button class="play-slow-btn" id="play-slow-btn" title="Graj powoli (Play slow speed - 0.55x)">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"></circle>
-                <polyline points="12 6 12 12 16 14"></polyline>
-              </svg>
-            </button>
-
             <!-- Main Play Button -->
-            <button class="play-main-btn" id="play-btn" title="Graj (Play normal speed - 1.0x)">
+            <button class="play-main-btn" id="play-btn" title="Graj liczbę (Play number)">
               <svg viewBox="0 0 24 24">
                 <polygon points="5,3 19,12 5,21"></polygon>
               </svg>
             </button>
           </div>
+          
+          <!-- Speed Selector Segmented Buttons -->
+          <div class="speed-selector-group">
+            <span class="speed-label">Prędkość (Speed):</span>
+            <div class="speed-segmented-control">
+              <button class="speed-btn active" id="speed-normal-btn" data-rate="1.0">Normalna (Normal)</button>
+              <button class="speed-btn" id="speed-slow-btn" data-rate="0.55">Wolna (Slow)</button>
+            </div>
+          </div>
+          
           <div class="audio-hint">Naciśnij przycisk, aby usłyszeć liczbę (Press button to hear number)</div>
         </div>
 
