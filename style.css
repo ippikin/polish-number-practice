@@ -536,42 +536,7 @@ header p {
   font-weight: 600;
 }
 
-/* Custom range inputs */
-.custom-range-inputs {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.8rem;
-}
 
-.range-input-wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-}
-
-.range-input-wrapper span {
-  font-size: 0.75rem;
-  color: var(--text-muted);
-}
-
-.sub-input {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #ffffff;
-  border-radius: 8px;
-  padding: 0.6rem;
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 1rem;
-  outline: none;
-  text-align: center;
-  transition: var(--transition-smooth);
-}
-
-.sub-input:focus {
-  border-color: var(--accent-red);
-  background: rgba(255, 255, 255, 0.05);
-}
 
 /* Custom Dropdown select */
 .select-wrapper {

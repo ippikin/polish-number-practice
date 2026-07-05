@@ -38,8 +38,6 @@ class PolishNumberPractice {
       feedbackMessage: document.getElementById('feedback-message'),
       feedbackSpelling: document.getElementById('feedback-spelling'),
       rangePresetBtns: document.querySelectorAll('.range-preset-btn'),
-      minRangeInput: document.getElementById('min-range'),
-      maxRangeInput: document.getElementById('max-range'),
       voiceSelect: document.getElementById('voice-select'),
       statsCorrect: document.getElementById('stats-correct'),
       statsTotal: document.getElementById('stats-total'),
@@ -82,8 +80,6 @@ class PolishNumberPractice {
         const range = JSON.parse(savedRange);
         this.minRange = range.min;
         this.maxRange = range.max;
-        this.selectors.minRangeInput.value = this.minRange;
-        this.selectors.maxRangeInput.value = this.maxRange;
         this.updateActiveRangePreset();
       } catch (e) {
         console.error('Failed to parse saved range', e);
@@ -146,37 +142,13 @@ class PolishNumberPractice {
         const max = parseInt(e.target.dataset.max, 10);
         this.minRange = min;
         this.maxRange = max;
-        this.selectors.minRangeInput.value = min;
-        this.selectors.maxRangeInput.value = max;
         this.updateActiveRangePreset();
         this.saveStateToStorage();
         this.newRound();
       });
     });
 
-    // Custom range inputs
-    const handleCustomRangeChange = () => {
-      let min = parseInt(this.selectors.minRangeInput.value, 10) || 0;
-      let max = parseInt(this.selectors.maxRangeInput.value, 10) || 10;
-      
-      // Enforce bounds
-      if (min < 0) min = 0;
-      if (max > 10000) max = 10000;
-      if (min > max) {
-        // Swap or adjust
-        min = max - 1;
-        if (min < 0) min = 0;
-        this.selectors.minRangeInput.value = min;
-      }
-      
-      this.minRange = min;
-      this.maxRange = max;
-      this.updateActiveRangePreset();
-      this.saveStateToStorage();
-    };
 
-    this.selectors.minRangeInput.addEventListener('change', handleCustomRangeChange);
-    this.selectors.maxRangeInput.addEventListener('change', handleCustomRangeChange);
     
     // Reset stats
     this.selectors.resetStatsBtn.addEventListener('click', () => this.resetStats());
