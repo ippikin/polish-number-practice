@@ -100,6 +100,10 @@ class PolishNumberPractice {
       }
     }
     
+    const savedRate = localStorage.getItem('pl_num_rate');
+    if (savedRate) {
+      this.speechRate = parseFloat(savedRate);
+    }
     this.updateStatsUI();
   }
 
@@ -107,12 +111,21 @@ class PolishNumberPractice {
     localStorage.setItem('pl_num_stats', JSON.stringify(this.stats));
     localStorage.setItem('pl_num_range', JSON.stringify({ min: this.minRange, max: this.maxRange }));
     localStorage.setItem('pl_num_history', JSON.stringify(this.history));
+    localStorage.setItem('pl_num_rate', this.speechRate);
   }
 
   setupEventListeners() {
     // Play button
-    this.selectors.playBtn.addEventListener('click', () => this.speakCurrentNumber(1.0));
-    this.selectors.playSlowBtn.addEventListener('click', () => this.speakCurrentNumber(0.55));
+    this.selectors.playBtn.addEventListener('click', () => {
+      this.speechRate = 1.0;
+      this.saveStateToStorage();
+      this.speakCurrentNumber(1.0);
+    });
+    this.selectors.playSlowBtn.addEventListener('click', () => {
+      this.speechRate = 0.55;
+      this.saveStateToStorage();
+      this.speakCurrentNumber(0.55);
+    });
     
     // Input action
     this.selectors.checkBtn.addEventListener('click', () => this.checkAnswer());
@@ -174,7 +187,7 @@ class PolishNumberPractice {
       if (selectedIndex !== '') {
         this.polishVoice = this.voices[selectedIndex];
         // Speak current number as a small check
-        this.speakCurrentNumber(1.0);
+        this.speakCurrentNumber();
       }
     });
   }
@@ -314,14 +327,15 @@ class PolishNumberPractice {
     // Automatically speak the number
     // Set a tiny timeout to ensure page handles any initial loading/focus first
     setTimeout(() => {
-      this.speakCurrentNumber(1.0);
+      this.speakCurrentNumber();
     }, 150);
   }
 
-  speakCurrentNumber(speed = 1.0) {
+  speakCurrentNumber(speed = null) {
     if (this.currentNumber === null) return;
+    const rate = speed !== null ? speed : this.speechRate;
     const words = this.numberToPolishWords(this.currentNumber);
-    this.speakText(words, speed);
+    this.speakText(words, rate);
   }
 
   speakText(text, speed = 1.0) {
