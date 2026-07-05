@@ -42,3 +42,4 @@ Play it live here: [https://ippikin.github.io/polish-number-practice/](https://i
    git clone https://github.com/ippikin/polish-number-practice.git
    ```
 2. Open `index.html` in any web browser.
+
