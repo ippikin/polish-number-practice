@@ -293,7 +293,9 @@ class PolishNumberPractice {
     this.selectors.revealBtn.disabled = false;
     
     this.selectors.userInput.value = '';
-    this.selectors.userInput.focus();
+    setTimeout(() => {
+      this.selectors.userInput.focus();
+    }, 50);
     
     // Hide feedback
     this.selectors.feedbackEl.className = 'feedback hidden';
