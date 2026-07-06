@@ -287,16 +287,16 @@ class PolishNumberPractice {
 
   newRound() {
     this.currentNumber = this.generateNumber();
+    // Re-enable interactive elements first
+    this.selectors.userInput.disabled = false;
+    this.selectors.checkBtn.disabled = false;
+    this.selectors.revealBtn.disabled = false;
+    
     this.selectors.userInput.value = '';
     this.selectors.userInput.focus();
     
     // Hide feedback
     this.selectors.feedbackEl.className = 'feedback hidden';
-    
-    // Re-enable interactive elements
-    this.selectors.userInput.disabled = false;
-    this.selectors.checkBtn.disabled = false;
-    this.selectors.revealBtn.disabled = false;
     
     // Automatically speak the number
     // Set a tiny timeout to ensure page handles any initial loading/focus first
