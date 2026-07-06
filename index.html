@@ -103,14 +103,16 @@
           </div>
 
           <div class="section-group">
-            <div style="display: flex; align-items: center; justify-content: space-between;">
-              <label for="voice-select" style="margin-bottom: 0;">Głos (Voice Engine)</label>
-              <a href="instructions.html" style="font-size: 0.75rem; color: var(--accent-red-hover); text-decoration: none; border-bottom: 1px dashed var(--accent-red-hover); font-weight: 500;">Instrukcja (Setup Guide)</a>
-            </div>
+            <label for="voice-select">Głos (Voice Engine)</label>
             <div class="select-wrapper">
               <select id="voice-select" class="custom-select">
                 <option value="">Wyszukiwanie głosów... (Loading voices...)</option>
               </select>
+            </div>
+            <div style="margin-top: 0.5rem; display: flex; justify-content: flex-end;">
+              <a href="instructions.html" style="font-size: 0.82rem; color: #fbbf24; text-decoration: underline; font-weight: 500;">
+                💡 Voice Setup Guide (How to install voices)
+              </a>
             </div>
             <div class="voice-warning" id="voice-warning">
               💡 Aby uzyskać najlepszą jakość, upewnij się, że w ustawieniach systemu zainstalowano polski głos. <a href="instructions.html" style="color: #fbbf24; text-decoration: underline; font-weight: 600;">Zobacz instrukcję instalacji (View setup guide)</a>.
@@ -173,7 +175,7 @@
     </main>
 
     <footer>
-      <p>Liczby po Polsku. Stworzone przez <a href="#">Antigravity AI</a>. Znakomity trening mowy w języku polskim.</p>
+      <p>Liczby po Polsku | <a href="instructions.html" style="color: var(--text-secondary); text-decoration: underline; font-weight: 500;">Voice Setup Guide (Instrukcja instalacji)</a></p>
     </footer>
   </div>
 
