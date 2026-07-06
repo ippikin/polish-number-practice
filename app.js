@@ -116,11 +116,13 @@ class PolishNumberPractice {
       this.speechRate = 1.0;
       this.saveStateToStorage();
       this.speakCurrentNumber(1.0);
+      this.selectors.userInput.focus();
     });
     this.selectors.playSlowBtn.addEventListener('click', () => {
       this.speechRate = 0.55;
       this.saveStateToStorage();
       this.speakCurrentNumber(0.55);
+      this.selectors.userInput.focus();
     });
     
     // Input action
