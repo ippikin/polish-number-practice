@@ -403,12 +403,17 @@ class PolishNumberPractice {
     
     nextBtn.addEventListener('click', () => {
       nextBtn.remove();
-      this.newRound();
+      // Defer newRound to the next tick to ensure focus sticks
+      setTimeout(() => {
+        this.newRound();
+      }, 0);
     });
     
     // Bind Enter key to next button
     const nextKeyListener = (e) => {
       if (e.key === 'Enter') {
+        e.preventDefault();
+        e.stopPropagation();
         document.removeEventListener('keydown', nextKeyListener);
         const btn = document.getElementById('next-round-btn');
         if (btn) {
@@ -464,11 +469,16 @@ class PolishNumberPractice {
     
     nextBtn.addEventListener('click', () => {
       nextBtn.remove();
-      this.newRound();
+      // Defer newRound to the next tick to ensure focus sticks
+      setTimeout(() => {
+        this.newRound();
+      }, 0);
     });
     
     const nextKeyListener = (e) => {
       if (e.key === 'Enter') {
+        e.preventDefault();
+        e.stopPropagation();
         document.removeEventListener('keydown', nextKeyListener);
         const btn = document.getElementById('next-round-btn');
         if (btn) {
