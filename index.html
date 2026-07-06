@@ -103,14 +103,17 @@
           </div>
 
           <div class="section-group">
-            <label for="voice-select">Głos (Voice Engine)</label>
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+              <label for="voice-select" style="margin-bottom: 0;">Głos (Voice Engine)</label>
+              <a href="instructions.html" style="font-size: 0.75rem; color: var(--accent-red-hover); text-decoration: none; border-bottom: 1px dashed var(--accent-red-hover); font-weight: 500;">Instrukcja (Setup Guide)</a>
+            </div>
             <div class="select-wrapper">
               <select id="voice-select" class="custom-select">
                 <option value="">Wyszukiwanie głosów... (Loading voices...)</option>
               </select>
             </div>
             <div class="voice-warning" id="voice-warning">
-              💡 Aby uzyskać najlepszą jakość, upewnij się, że w ustawieniach systemu operacyjnego zainstalowano polski pakiet językowy syntezatora mowy (TTS).
+              💡 Aby uzyskać najlepszą jakość, upewnij się, że w ustawieniach systemu zainstalowano polski głos. <a href="instructions.html" style="color: #fbbf24; text-decoration: underline; font-weight: 600;">Zobacz instrukcję instalacji (View setup guide)</a>.
             </div>
           </div>
         </section>
