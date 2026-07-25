@@ -321,6 +321,10 @@ class PolishNumberPractice {
     this.synth.cancel();
     
     const utterance = new SpeechSynthesisUtterance(text);
+    if (this.selectors.userInput) {
+      this.selectors.userInput.focus();
+    }
+
     if (this.polishVoice) {
       utterance.voice = this.polishVoice;
     }
